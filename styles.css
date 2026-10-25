@@ -1,0 +1,68 @@
+/* Shorts, everywhere but the history. YouTube keeps renaming the shelf and
+   item components, so the rules key on what never changes: a link to /shorts/.
+   Sections and shelves holding Shorts (home, subscriptions, trending, search,
+   related videos)… */
+
+/* One :is() list: an invalid selector is ignored instead of voiding the rule. */
+:is(
+html:not([data-ytb-path="/feed/history"]) ytd-rich-section-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-rich-shelf-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-reel-shelf-renderer,
+html:not([data-ytb-path="/feed/history"]) grid-shelf-view-model:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-shelf-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-item-section-renderer:has(> #contents > :only-child a[href*="/shorts/"]),
+html[data-ytb-path="/feed/subscriptions"] ytd-item-section-renderer:has(a[href="/feed/subscriptions/shorts"]),
+
+/* …single Shorts mixed into lists (related videos, channels, search)… */
+html:not([data-ytb-path="/feed/history"]) ytd-rich-item-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-video-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-compact-video-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-grid-video-renderer:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) yt-lockup-view-model:has(a[href*="/shorts/"]),
+html:not([data-ytb-path="/feed/history"]) ytd-video-renderer:has(ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"]),
+
+/* …the Shorts entry in the left menu (full and collapsed) and the Shorts tab on channels… */
+yt-chip-cloud-chip-renderer[data-ytb-shorts],
+ytd-guide-entry-renderer:has(a[title="Shorts"]),
+ytd-mini-guide-entry-renderer:has(a[title="Shorts"]),
+yt-tab-shape[tab-title="Shorts"],
+
+/* …and the context buttons on Shorts. */
+yt-shorts-suggested-action-view-model.YtShortsSuggestedActionViewModelStaticHost,
+
+/* Home page: sponsored videos, Playables and live games. */
+html[data-ytb-path="/"] ytd-rich-item-renderer:has(a[href^="https://www.googleadservices.com/pagead/aclk"]),
+html[data-ytb-path="/"] ytd-rich-section-renderer:has(ytd-mini-game-card-view-model),
+html[data-ytb-path="/"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-gaming]),
+html[data-ytb-path="/"] ytd-rich-section-renderer:has([aria-label*="live game" i]),
+html[data-ytb-path="/"] ytd-rich-section-renderer:has(ytd-rich-shelf-renderer #title a[href*="gaming"]),
+
+/* Animated thumbnails and the buttons over them. */
+#mouseover-overlay,
+.mouseover-play,
+.mouseover-img,
+#preview > ytd-video-preview,
+#hover-overlays,
+#player-controls.ytd-video-preview,
+
+/* Promos: sidebar footer and "YouTube Premium" banners. */
+ytd-guide-renderer #footer,
+yt-mealbar-promo-renderer
+) {
+  display: none !important;
+}
+
+/* Hidden scroll bar. */
+
+html {
+  scrollbar-width: none !important;
+}
+
+/* Three thumbnails per row. */
+
+ytd-rich-grid-renderer,
+ytd-rich-shelf-renderer,
+[style*="--ytd-rich-grid-items-per-row"] {
+  --ytd-rich-grid-items-per-row: 3 !important;
+  --ytd-rich-grid-item-min-width: 220px !important;
+}

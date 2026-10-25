@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root { color-scheme: light dark; font: message-box; }
+    body { margin: 0; padding: 8px 0; display: grid; gap: 12px; }
+    p { margin: 0; }
+    input[type="file"] { display: none; }
+  </style>
+</head>
+<body>
+  <p id="count"></p>
+  <div>
+    <button id="import" type="button">Importar vídeos vistos…</button>
+    <input id="file" type="file" accept=".json,application/json">
+  </div>
+  <p id="status"></p>
+  <script src="options.js"></script>
+</body>
+</html>
